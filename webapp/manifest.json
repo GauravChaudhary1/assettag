@@ -1,0 +1,188 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "com.seagate.ui5.assettagpi",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.12.4",
+      "toolsId": "776e040a-03af-422b-a2e3-e9cbdb4e3ba0"
+    },
+    "dataSources": {
+      "mainService": {
+          "uri": "/sap/opu/odata/sap/ZUI_ASSETTAG/",
+          "type": "OData",
+          "settings": {
+              "annotations": [
+              ],
+              "localUri": "localService/metadata.xml"
+          }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "assettag-scanning": {
+          "semanticObject": "assettag",
+          "action": "scanning",
+          "title": "{{flpTitle}}",
+          "subTitle": "{{flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.8",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.seagate.ui5.assettagpi.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+            "defaultBindingMode": "TwoWay",
+            "defaultCountMode": "Inline",
+            "refreshAfterChange": true,
+            "metadataUrlParams": {
+                "sap-value-list": "none"
+            }
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.seagate.ui5.assettagpi.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMain"
+          ]
+        },
+        {
+          "name": "RouteDetails",
+          "pattern": "asset/{id}/ccode/{bukrs}/detail",
+          "target": [
+            "TargetDetails"
+          ]
+        },
+        {
+          "name": "RouteAttachment",
+          "pattern": "asset/{id}/ccode/{bukrs}/attachment/:mode:",
+          "target": [
+            "TargetAttachment"
+          ]
+        },
+        {
+          "name": "RouteReportIssue",
+          "pattern": "asset/{id}/ccode/{bukrs}/ReportIssue",
+          "target": [
+            "TargetReportIssue"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Main",
+          "viewName": "Main"
+        },
+        "TargetDetails": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Details",
+          "viewName": "Details"
+        },
+        "TargetAttachment": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Attachment",
+          "viewName": "Attachment"
+        },
+        "TargetReportIssue": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ReportIssue",
+          "viewName": "ReportIssue"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.seagate.ui5.assettagpi.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "assettag"
+  }
+}

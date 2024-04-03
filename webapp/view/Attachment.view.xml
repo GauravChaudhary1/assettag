@@ -1,0 +1,20 @@
+<mvc:View controllerName="com.seagate.ui5.assettagpi.controller.Attachment"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns:core="sap.ui.core"
+    core:require="{Helper:'com/seagate/ui5/assettagpi/controller/handler/Session'}"
+    xmlns="sap.m">
+    <Page id="page">
+        <content>
+            <Text text="Add Attachment here"></Text>
+            <!-- <core:ComponentContainer id="attachmentComponentContainer"></core:ComponentContainer> -->
+        </content>
+        <!-- <footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Save"/>
+				<Button type="Reject" text="Cancel" press="Helper.onCancel.call($controller, true)"/>
+			</OverflowToolbar>
+		</footer> -->
+    </Page>
+</mvc:View>

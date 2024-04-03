@@ -1,0 +1,70 @@
+<core:FragmentDefinition 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:core="sap.ui.core" 
+	xmlns:ndc="sap.ndc"
+    xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+
+    <grid:CSSGrid
+    id="grid1"
+    gridTemplateColumns="2fr"			
+    gridGap="1rem">        
+        <VBox id="BarcodeScannerVBox">
+            <Label text="{/scanAPIInfo}" class="sapUiSmallMarginBegin"/>
+            <VBox class="sapUiSmallMargin">
+                <Label text="Asset Tag"/>                    
+                <HBox class="sapUiTinyMarginTop">
+                    <Input
+                        id="BarcodeScannerResult"
+                        type="Text"
+                        placeholder="Enter Asset Tag Number"
+                        width="20rem"
+                        submit="getAssetDetails"
+                    />
+                    <ndc:BarcodeScannerButton
+                        id="BarcodeScannerButtonZebra"
+                        scanSuccess="onScanSuccess"
+                        scanFail="onScanError"
+                        inputLiveUpdate="onScanLiveUpdate"
+                        dialogTitle="Barcode Scanner"
+                        class="BarcodeScannerButtonWithZebraEB"
+                    />
+                    <template:if test="{= !${device>/system/phone} }">
+                        <Button text="Upload" press="onUploadScanRecords"/>
+                    </template:if>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <List id="scannedassetslist"
+            class="sapUiContentPadding"
+            items="{/AssetScans}"
+            swipe="handleSwipe"
+            headerText="Scanned Assets" >
+                <FeedListItem
+                    sender="{AssetTag}"
+                    icon="{parts:[{path:'FoundinSAP'}],formatter:'.formatIcon'}"
+                    info="{parts:[{path:'FoundinSAP'}],formatter:'.formatInfo'}"
+                    timestamp="{parts:[{path:'ScannedOn'}],formatter:'.formatScannedOn'}"
+                    text="{AssetDescription}"
+                    press="onPressDetails"
+                    type="Active">
+                    <customData>
+                        <core:CustomData key="Bukrs" value="{CompanyCode}"></core:CustomData>
+                        <core:CustomData key="AssetNumber" value="{AssetNumber}"></core:CustomData>
+                    </customData>
+                    <actions>
+                        <FeedListItemAction text="Details" icon="sap-icon://display" key="detail" press="onPressDetails" />
+                        <FeedListItemAction text="Add Attachment" icon="sap-icon://attachment" key="attach" press="onPressAttachment" />
+                        <FeedListItemAction text="Report Issue" icon="sap-icon://quality-issue" key="issue" press="onPressReportIssue" />
+                        <FeedListItemAction text="Delete" icon="sap-icon://delete" key="delete" press="onPressDelete" />
+                    </actions>                    
+                </FeedListItem>
+                <swipeContent>
+                    <Button press="handleSwipeAction" />
+                </swipeContent>
+        </List>
+    </grid:CSSGrid>
+
+</core:FragmentDefinition>    

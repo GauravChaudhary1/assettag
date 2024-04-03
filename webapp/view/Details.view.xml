@@ -1,0 +1,39 @@
+<mvc:View controllerName="com.seagate.ui5.assettagpi.controller.Details"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns:core="sap.ui.core"
+    core:require="{Helper:'com/seagate/ui5/assettagpi/controller/handler/Session'}"
+    xmlns="sap.m">
+    <Page id="page">
+        <content>
+            <List
+                id="DetailsList"
+                items="{details>/}"
+                headerText="Details">
+                <items>
+                    <!-- <StandardListItem
+                        title="{details>name}"
+                        description="{details>value}"
+                        iconDensityAware="false"
+                        iconInset="false"
+                        adaptTitleSize="false" />                    -->
+                    <CustomListItem>
+                        <HBox width="100%">
+                            <VBox class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom" width="100%">
+                                <Label text="{parts:[{path:'details>name'}],formatter:'.returnTextLabel'}"/>
+                                <TextArea value="{details>value}" width="100%" rows="1" editable="{parts:[{path:'details>name'}],formatter:'.returnEditableFormat'}" />
+                            </VBox>
+                        </HBox>
+                    </CustomListItem>    
+                </items>
+            </List>
+        </content>
+        <footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Update" press="onUpdateDetails"/>
+				<Button type="Reject" text="Cancel" press="Helper.onCancel.call($controller, true)"/>
+			</OverflowToolbar>
+		</footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,15 @@
+<mvc:View controllerName="com.seagate.ui5.assettagpi.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content/>
+        <footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Ghost" text="Review" press="onPressReview"/>
+				<Button type="Accept" text="Submit" press="onPressSubmit"/>
+				<Button type="Reject" text="Cancel" press="onPressCancel"/>
+			</OverflowToolbar>
+		</footer>
+    </Page>
+</mvc:View>

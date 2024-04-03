@@ -1,0 +1,39 @@
+/* Enter your custom styles here */
+.BarcodeScannerButtonWithZebraEB {
+	position: absolute !important;
+	margin-top: auto;
+	margin-right: -2rem;
+	z-index: 2;
+	right: 2rem;
+}
+
+.BarcodeScannerButtonWithZebraEB .sapMBtnInner {
+	background-image: none;
+	background-color: transparent;
+	border-color: transparent;
+}
+
+#cameraFileInput {
+	display: none;
+  }
+  
+  #pictureFromCamera {
+	width: 100%;
+	height: auto;
+	margin-top: 16px;
+  }
+  
+  .btn {
+	display: inline-block;
+	background-color: rgb(235, 245, 203);
+	color: rgb(37, 111, 58);
+	padding: 8px 12px;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+  }
+  
+  .btn:hover {
+	filter: brightness(0.9);
+  }

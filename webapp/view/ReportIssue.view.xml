@@ -1,0 +1,50 @@
+<mvc:View controllerName="com.seagate.ui5.assettagpi.controller.ReportIssue"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+    core:require="{Helper:'com/seagate/ui5/assettagpi/controller/handler/Session'}"
+    xmlns="sap.m">
+    <Page id="page">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm id="SimpleFormChange354wide"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    title="Report Issue"
+                    labelSpanXL="4"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="4"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="Issue Title" />
+                        <Input id="issueTitle" />
+                        <Label text="Issue Description" />
+                        <TextArea id="issueDesc" rows="8"/>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+                <core:HTML content='&lt;label for=&quot;cameraFileInput&quot;&gt;
+                        &lt;span class=&quot;btn&quot;&gt;Open Camera&lt;/span&gt;
+                        &lt;input id=&quot;cameraFileInput&quot; type=&quot;file&quot; accept=&quot;image/*&quot; capture=&quot;environment&quot;&gt;
+                        &lt;/label&gt;' />  
+				<Button type="Accept" text="Save" press="onSaveReportedIssue"/>
+				<Button type="Reject" text="Cancel" press="Helper.onCancel.call($controller, true)"/>
+			</OverflowToolbar>
+		</footer>
+    </Page>
+</mvc:View>
